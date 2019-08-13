@@ -13,9 +13,11 @@ VERSION = __version__
 AUTHOR = 'Aaron Dettmann'
 EMAIL = 'dettmann@kth.se'
 DESCRIPTION = 'Libraries used by different packages'
-URL = '***'
+URL = 'https://github.com/airinnova/commonlibs'
 REQUIRES_PYTHON = '>=3.6.0'
-REQUIRED = ['numpy']
+REQUIRED = [
+    'numpy'
+]
 README = 'README.rst'
 PACKAGE_DIR = 'src/lib/'
 LICENSE = 'Apache License 2.0'
@@ -37,7 +39,7 @@ setuptools.setup(
     include_package_data=True,
     package_dir={'': PACKAGE_DIR},
     license=LICENSE,
-    packages=[NAME],
+    packages=setuptools.find_namespace_packages(where=PACKAGE_DIR),
     python_requires=REQUIRES_PYTHON,
     install_requires=REQUIRED,
     # See: https://pypi.org/classifiers/
@@ -51,6 +53,5 @@ setuptools.setup(
         "Intended Audience :: Education",
         "Intended Audience :: Science/Research",
         "Topic :: Scientific/Engineering",
-        "Topic :: Scientific/Engineering :: Physics",
     ],
 )
