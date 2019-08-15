@@ -7,7 +7,7 @@ Subpackages
 .. toctree::
 
     commonlibs.logger
-    commonlibs.mathtools
+    commonlibs.math
 
 Module contents
 ---------------

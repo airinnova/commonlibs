@@ -7,6 +7,11 @@ Versioning <https://semver.org/spec/v2.0.0.html>`__.
 [0.1.1] -- 2019-08-15
 ---------------------
 
+Changed
+~~~~~~~
+
+* Renamed module `mathtools` to `math`
+
 Removed
 ~~~~~~~
 
@@ -22,6 +27,3 @@ Added
 
 Fixed
 ~~~~~
-
-Changed
-~~~~~~~

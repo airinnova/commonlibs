@@ -1,2 +1,2 @@
 from . import logger
-from . import mathtools
+from . import math
