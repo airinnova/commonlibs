@@ -12,14 +12,6 @@ commonlibs.mathtools.interpolation module
     :undoc-members:
     :show-inheritance:
 
-commonlibs.mathtools.rank\_nullspace module
--------------------------------------------
-
-.. automodule:: commonlibs.mathtools.rank_nullspace
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 commonlibs.mathtools.vectors module
 -----------------------------------
 

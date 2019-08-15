@@ -32,13 +32,13 @@ def init(log_filename, level='warning'):
     Inititalise a logger
 
     Note:
-    * A stream handler and a console handler will be added, only if there are
-      no existing handlers
-    * Accepted levels are:
-        * 'info'
-        * 'debug'
-        * 'quiet' (only errors)
-        * Default level is waring
+        * A stream handler and a console handler will be added, only if there are
+          no existing handlers
+        * Accepted levels are:
+            * 'info'
+            * 'debug'
+            * 'quiet' (only errors)
+            * Default level is waring
 
     Args:
         :log_filename: filename of the log file
