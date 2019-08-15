@@ -6,6 +6,10 @@
     :target: https://github.com/airinnova/commonlibs/blob/master/LICENSE.txt
     :alt: License
 
+.. image:: https://readthedocs.org/projects/commonlibs/badge/?version=latest
+    :target: https://commonlibs.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 CommonLibs
 ==========
 
@@ -14,7 +18,7 @@ CommonLibs
 Documentation
 -------------
 
-TODO
+See: https://commonlibs.readthedocs.io/
 
 Installation
 ------------
@@ -22,5 +26,3 @@ Installation
 .. code::
 
     pip install commonlibs
-
-TODO See also
