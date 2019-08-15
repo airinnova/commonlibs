@@ -9,7 +9,12 @@
 CommonLibs
 ==========
 
-Libraries shared by other applications
+*CommonLibs* is a Python library package providing general tools used by other applications.
+
+Documentation
+-------------
+
+TODO
 
 Installation
 ------------
@@ -17,3 +22,5 @@ Installation
 .. code::
 
     pip install commonlibs
+
+TODO See also
