@@ -40,7 +40,7 @@ class ProjectPaths:
         Class providing tools for filepath handling
 
         This class automatically converts filepaths into absolute paths,
-        which helps to avoid change directories during runtime of a script.
+        which helps to avoid changing directories during runtime of a script.
 
         Paths stored and returned in this class are based on the 'Path()'
         object from the pathlib standard library, see also:
@@ -178,12 +178,12 @@ class ProjectPaths:
         formatted_path = str(self._abs_paths[uid])
         # formatted_path = str(self._abs_paths[uid]).format(*args, **kwargs)
 
-        ##### TODO: IMPROVE!!! ####
+        # #### TODO: IMPROVE!!! ####
         # - Make more general
         formatters = [f for (_, f, _, _) in string.Formatter().parse(formatted_path)]
         if self.FORMATTER_COUNTER in formatters:
             formatted_path = formatted_path.format(counter=self.counter)
-        ###########################
+        # ##########################
 
         return Path(formatted_path)
 
@@ -241,7 +241,7 @@ class ProjectPaths:
             if path.is_dir():
                 shutil.rmtree(path, ignore_errors=True)
             else:
-                ############## TODO : better
+                # ############# TODO : better
                 # - ignore_errors etc...
                 try:
                     os.remove(path)

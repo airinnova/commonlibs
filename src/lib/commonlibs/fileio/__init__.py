@@ -1,1 +1,1 @@
-from .logger import *
+from .paths import *
