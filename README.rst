@@ -10,6 +10,14 @@
     :target: https://commonlibs.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
+.. image:: https://travis-ci.org/airinnova/commonlibs.svg?branch=master
+    :target: https://travis-ci.org/airinnova/commonlibs
+    :alt: Build status
+
+.. image:: https://codecov.io/gh/airinnova/commonlibs/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/airinnova/commonlibs
+    :alt: Coverage
+
 CommonLibs
 ==========
 

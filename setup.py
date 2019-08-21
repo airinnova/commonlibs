@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import setuptools
+from setuptools import setup, find_packages
 import os
 
 from src.lib.commonlibs.__version__ import __version__
@@ -28,7 +28,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, README), "r") as fp:
     long_description = fp.read()
 
-setuptools.setup(
+setup(
     name=NAME,
     version=VERSION,
     author=AUTHOR,
@@ -39,7 +39,7 @@ setuptools.setup(
     include_package_data=True,
     package_dir={'': PACKAGE_DIR},
     license=LICENSE,
-    packages=setuptools.find_namespace_packages(where=PACKAGE_DIR),
+    packages=find_packages(where=PACKAGE_DIR),
     python_requires=REQUIRES_PYTHON,
     install_requires=REQUIRED,
     # See: https://pypi.org/classifiers/

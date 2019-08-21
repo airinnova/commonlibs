@@ -34,5 +34,5 @@ def test_add_paths():
 
     # Adding same UID must raise error
     with raises(ValueError):
-        paths.add_path(uid=uid1)
+        paths.add_path(uid=uid1, path=path1)
 
