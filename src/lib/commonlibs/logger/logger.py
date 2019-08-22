@@ -115,13 +115,13 @@ def truncate_filepath(filepath, max_len=25, basename_only=True):
     return prefix + pathname
 
 
-def decorate(string, decoratation="=", n1=10, n2=None):
+def decorate(string, decoration="=", n1=10, n2=None):
     """
     Decorate a string to emphasise it
 
     Args:
         :string: string to decorate
-        :decoratation: string used
+        :decoration: string used
         :n1: prefix multiplier
         :n2: suffix multiplier
 
@@ -130,16 +130,16 @@ def decorate(string, decoratation="=", n1=10, n2=None):
     """
 
     if not isinstance(string, str):
-        raise ValueError("'string' must be of type str")
+        raise TypeError("'string' must be of type str")
 
-    if not isinstance(decoratation, str):
-        raise ValueError("'decoratation' must be of type str")
+    if not isinstance(decoration, str):
+        raise TypeError("'decoration' must be of type str")
 
     if not isinstance(n1, int):
-        raise ValueError("'n1' must be of type int")
+        raise TypeError("'n1' must be of type int")
 
     if n2 is None:
         n2 = n1
 
-    mod_string = decoratation*n1 + ' ' + string + ' ' + decoratation*n2
+    mod_string = decoration*n1 + ' ' + string + ' ' + decoration*n2
     return mod_string
