@@ -21,3 +21,13 @@ def test_unit_vector():
     v_from_list = m.unit_vector(list(SOME_VECTOR))
     v_from_np = m.unit_vector(np.array(SOME_VECTOR))
     assert np.testing.assert_array_equal(v_from_list, v_from_np) is None
+
+
+def test_angle_between():
+    """
+    Test function to determine angle between vectors
+    """
+
+    assert m.angle_between((1, 0, 0), (0, 1, 0)) == 1.5707963267948966
+    assert m.angle_between((1, 0, 0), (1, 0, 0)) == 0.0
+    assert m.angle_between((1, 0, 0), (-1, 0, 0)) == 3.141592653589793

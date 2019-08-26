@@ -36,26 +36,26 @@ def direction_cosine(vector1, vector2):
     """
     Returns the direcion cosine between vectors 'vector1' and 'vector2'
 
+    See also:
+
+    * https://en.wikipedia.org/wiki/Euclidean_vector#Conversion_between_multiple_Cartesian_bases
+
     Args:
-        :vector1: first vector
-        :vector2: second vector
+        :vector1: First vector
+        :vector2: Second vector
+
+    Returns:
+        :direction_cosine: Direction cosine
     """
 
     v1_u = unit_vector(vector1)
     v2_u = unit_vector(vector2)
 
-    return np.clip(np.dot(v1_u, v2_u), -1.0, 1.0)
+    return np.clip(np.dot(v1_u, v2_u), a_min=-1.0, a_max=1.0)
 
 
 def angle_between(vector1, vector2):
     """Return the angle in radians between vectors 'vector1' and 'vector2'
-
-        >>> angle_between((1, 0, 0), (0, 1, 0))
-        1.5707963267948966
-        >>> angle_between((1, 0, 0), (1, 0, 0))
-        0.0
-        >>> angle_between((1, 0, 0), (-1, 0, 0))
-        3.141592653589793
 
     # See also: https://stackoverflow.com/questions/2827393/
                 angles-between-two-n-dimensional-vectors-in-python/13849249#13849249
