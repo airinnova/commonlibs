@@ -4,6 +4,17 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.2.1] -- 2019-09-03
+---------------------
+
+Added
+~~~~~
+
+* Added methods to `ProjectPaths()`
+    - `remove_path()`
+    - `add_suffix()`
+    - `change_suffix()`
+
 [0.2.0] -- 2019-08-21
 ---------------------
 

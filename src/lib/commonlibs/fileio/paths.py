@@ -159,6 +159,53 @@ class ProjectPaths:
         assembled_path = self.__class__.join_paths(parent_path, path)
         self.add_path(uid, assembled_path, uid_groups)
 
+    def remove_path(self, uid):
+        """
+        Remove a path from the bookkeeping
+
+        Args:
+            :uid: Unique identifier for the path
+        """
+
+        # Dont allow to remove root
+        # - change_root()
+
+        del self._abs_paths[uid]
+
+    def add_suffix(self, uid, new_suffix):
+        """
+        Add a suffix to a path
+
+        Args:
+            :uid: Unique identifier for the path
+            :new_suffix: String with the new suffix
+        """
+
+        if not isinstance(new_suffix, str):
+            raise ValueError("Suffix must be a string")
+
+        if not new_suffix.startswith("."):
+            new_suffix = "." + new_suffix
+
+        self._abs_paths[uid] = Path(str(self._abs_paths[uid]) + new_suffix)
+
+    def change_suffix(self, uid, new_suffix):
+        """
+        Modify the suffix of a path
+
+        Args:
+            :uid: Unique identifier for the path
+            :new_suffix: String with the new suffix
+        """
+
+        old_suffix = PurePath(self._abs_paths[uid]).suffix
+
+        if old_suffix:
+            # Temporarily (!) we can store a string here
+            self._abs_paths[uid] = str(self._abs_paths[uid])[:-len(old_suffix)]
+
+        self.add_suffix(uid, new_suffix)
+
     def _format_path(self, uid):
         """
         TODO: UPDATE docstring
