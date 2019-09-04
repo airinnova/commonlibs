@@ -18,8 +18,12 @@
     :target: https://codecov.io/gh/airinnova/commonlibs
     :alt: Coverage
 
-CommonLibs
-==========
+|
+
+.. image:: https://raw.githubusercontent.com/airinnova/commonlibs/master/docs/source/_static/images/logo.png
+    :alt: CommonLibs
+    :width: 100 px
+    :scale: 100 %
 
 *CommonLibs* is a Python library package providing general tools used by other applications.
 

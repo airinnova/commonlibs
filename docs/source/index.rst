@@ -4,6 +4,10 @@ Welcome to |name|'s documentation!
 Introduction
 ------------
 
+.. image:: _static/images/logo.png
+    :scale: 50 %
+    :alt: CommonLibs
+
 |name| is a Python library that provides some general tools used in different other application.
 
 .. toctree::
