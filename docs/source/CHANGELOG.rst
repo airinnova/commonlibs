@@ -15,6 +15,11 @@ Added
     - `add_suffix()`
     - `change_suffix()`
 
+Changed
+~~~~~~~
+
+* Moved staticmethod `ProjectPaths.join_paths()` into separate function
+
 [0.2.0] -- 2019-08-21
 ---------------------
 

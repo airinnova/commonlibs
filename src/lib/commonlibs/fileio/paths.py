@@ -126,7 +126,7 @@ class ProjectPaths:
         path = Path(path)
 
         if not is_absolute:
-            path = self.__class__.join_paths(self.root, path)
+            path = join_paths(self.root, path)
 
         self._abs_paths[uid] = path
 
@@ -156,7 +156,7 @@ class ProjectPaths:
             raise ValueError(f"Parent UID '{uid_parent}' not found")
 
         parent_path = self._abs_paths[uid_parent]
-        assembled_path = self.__class__.join_paths(parent_path, path)
+        assembled_path = join_paths(parent_path, path)
         self.add_path(uid, assembled_path, uid_groups)
 
     def remove_path(self, uid):
@@ -234,19 +234,6 @@ class ProjectPaths:
 
         return Path(formatted_path)
 
-    @staticmethod
-    def join_paths(path1, path2):
-        """
-        Join two paths
-
-        Args:
-            :path1: Leading path
-            :path2: Trailing path
-        """
-
-        path = PurePath(path1).joinpath(path2)
-        return Path(path)
-
     def iter_group_paths(self, uid_groups, make_dirs=False, is_dir=False):
         """
         Return a generator with paths belong to group with given UID
@@ -294,3 +281,29 @@ class ProjectPaths:
                     os.remove(path)
                 except:
                     pass
+
+
+def join_paths(*paths):
+    """
+    Join two or more paths and return a new 'Path()' object
+
+    Args:
+        :*paths: Paths to join
+
+    Returns:
+        :joined_path: Joined path
+
+    Raises:
+        :TypeError: If not enough paths are given
+    """
+
+    if len(paths) < 2:
+        raise TypeError("Must provide at leat two paths")
+
+    # TODO: check paths types (string, or path-like)
+
+    joined_path = PurePath(paths[0])
+    for path in paths[1:]:
+        joined_path = joined_path.joinpath(path)
+
+    return Path(joined_path)

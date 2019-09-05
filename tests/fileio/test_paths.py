@@ -3,7 +3,7 @@
 
 import os
 
-from commonlibs.fileio.paths import ProjectPaths
+from commonlibs.fileio.paths import ProjectPaths, join_paths
 from pytest import raises
 
 
@@ -95,7 +95,5 @@ def test_join_paths():
     Test function to join file paths
     """
 
-    join = ProjectPaths.join_paths
-
-    path_joined = join(PATH1, PATH2)
+    path_joined = join_paths(PATH1, PATH2)
     assert str(path_joined) == f"{PATH1}/{PATH2}"
