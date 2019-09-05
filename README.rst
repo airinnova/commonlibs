@@ -25,7 +25,11 @@
     :width: 100 px
     :scale: 100 %
 
-*CommonLibs* is a Python library package providing general tools used by other applications.
+*CommonLibs* is a Python library package providing general tools used by other applications. CommonLibs provides the following sub-packages.
+
+* **fileio** Tools for simpler file path handling.
+* **logger** Consistent logging across different Python packages.
+* **math** Vectors manipulations.
 
 Documentation
 -------------

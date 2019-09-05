@@ -8,7 +8,11 @@ Introduction
     :scale: 50 %
     :alt: CommonLibs
 
-|name| is a Python library that provides some general tools used in different other application.
+|name| is a Python library package providing general tools used by other applications. |name| provides the following sub-packages.
+
+* **fileio** Tools for simpler file path handling.
+* **logger** Consistent logging across different Python packages.
+* **math** Vectors manipulations.
 
 .. toctree::
    :maxdepth: 1
