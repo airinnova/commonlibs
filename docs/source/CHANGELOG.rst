@@ -4,6 +4,15 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.2.2] -- 2019-09-05
+---------------------
+
+Changed
+~~~~~~~
+
+* Moved staticmethod `ProjectPaths.join_paths()` into separate function
+
+
 [0.2.1] -- 2019-09-03
 ---------------------
 
@@ -14,11 +23,6 @@ Added
     - `remove_path()`
     - `add_suffix()`
     - `change_suffix()`
-
-Changed
-~~~~~~~
-
-* Moved staticmethod `ProjectPaths.join_paths()` into separate function
 
 [0.2.0] -- 2019-08-21
 ---------------------
