@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import random
 
 from commonlibs.fileio.paths import ProjectPaths, join_paths
 from pytest import raises
@@ -19,6 +20,7 @@ UID_GROUP1 = 'group1'
 UID_GROUP2 = 'group2'
 SUBPATH1 = 'sub1'
 SUBPATH2 = 'sub2'
+
 
 def test_project_paths_basics():
     """
@@ -51,6 +53,10 @@ def test_adding_paths():
     assert len(paths._groups[UID_GROUP2]) == 1
     assert len(paths._abs_paths) == 3
 
+    # Adding invalid group UID must raise error
+    with raises(TypeError):
+        paths.add_path(uid=str(random.randint(100, 200)), path=PATH1, uid_groups=1234)
+
     # ----- add_subpath() -----
     paths.add_subpath(uid_parent=UID1, uid=UID3, path=SUBPATH1, uid_groups=UID_GROUP1)
     paths.add_subpath(uid_parent=UID2, uid=UID4, path=SUBPATH2, uid_groups=(UID_GROUP1, UID_GROUP2))
@@ -59,6 +65,14 @@ def test_adding_paths():
     assert len(paths._groups[UID_GROUP2]) == 2
     assert len(paths._abs_paths) == 5
 
+    # Adding non-exsiting group UID must raise error
+    with raises(ValueError):
+        paths.add_subpath(
+            uid_parent='invalid_parent_uid',
+            uid=str(random.randint(100, 200)),
+            path=SUBPATH2,
+            uid_groups=(UID_GROUP1, UID_GROUP2)
+        )
 
 
 def test_calling_paths():
@@ -97,3 +111,28 @@ def test_join_paths():
 
     path_joined = join_paths(PATH1, PATH2)
     assert str(path_joined) == f"{PATH1}/{PATH2}"
+
+    with raises(TypeError):
+        join_paths('only_one_path')
+
+
+def test_counter_paths():
+    """
+    Test counter paths
+    """
+
+    paths = ProjectPaths(ROOT)
+    assert paths.counter == 0
+
+    # Setting
+    invalid_conter_values = [
+        1.2,
+        '23',
+        None
+    ]
+
+    for invalid_conter_value in invalid_conter_values:
+        with raises(ValueError):
+            paths.counter = invalid_conter_value
+
+    paths.counter = 1  # Value okay

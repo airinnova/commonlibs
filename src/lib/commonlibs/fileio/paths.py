@@ -123,13 +123,6 @@ class ProjectPaths:
         if uid in self._abs_paths.keys():
             raise ValueError(f"UID '{uid}' already used")
 
-        path = Path(path)
-
-        if not is_absolute:
-            path = join_paths(self.root, path)
-
-        self._abs_paths[uid] = path
-
         # ----- Group bookkeeping -----
         if uid_groups is not None:
             if not isinstance(uid_groups, (str, list, tuple)):
@@ -140,6 +133,13 @@ class ProjectPaths:
 
             for uid_group in uid_groups:
                 self._groups[uid_group].append(uid)
+
+        path = Path(path)
+        if not is_absolute:
+            path = join_paths(self.root, path)
+
+        self._abs_paths[uid] = path
+
 
     def add_subpath(self, uid_parent, uid, path, uid_groups=None):
         """
