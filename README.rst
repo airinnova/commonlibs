@@ -30,6 +30,7 @@
 * **fileio** Tools for simpler file path handling.
 * **logger** Consistent logging across different Python packages.
 * **math** Vectors manipulations.
+* **dicts** Dictionary tools.
 
 Documentation
 -------------
