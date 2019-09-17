@@ -4,6 +4,14 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.3.0] -- 2019-09-17
+---------------------
+
+Added
+~~~~~
+
+* Added new module `dicts.schemadicts` for methods to check if a dictionary is conform with a schema
+
 [0.2.2] -- 2019-09-05
 ---------------------
 
