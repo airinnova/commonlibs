@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from datetime import datetime
+
 from pytest import raises
 
-from commonlibs.dicts.schemadicts import check_dict_against_schema
+from commonlibs.dicts.schemadicts import check_dict_against_schema, get_default_value_dict
+
+
+def time_now():
+    return datetime.strftime(datetime.now(), '%H:%M')
+
 
 SCHEMA_1 = {
     '__REQUIRED_KEYS': ['name', 'age'],
@@ -20,6 +27,12 @@ SCHEMA_1 = {
     'is_working': {
         'type': bool
     }
+}
+
+SCHEMA_1_DEFAULT_VALUE_DICT = {
+    'name': '',
+    'age': 0,
+    'is_working': False,
 }
 
 # Simple nested schema
@@ -41,7 +54,6 @@ SCHEMA_2 = {
     }
 }
 
-
 SCHEMA_3 = {
     'fruits': {
         'type': list,
@@ -54,6 +66,30 @@ SCHEMA_3 = {
         'min_len': 3,
         'item_types': (int, float),
     },
+}
+
+
+SCHEMA_4 = {
+    'time': {'type': str, 'default': time_now},
+    'person': {'type': str, 'default': 'C.Lindbergh'},
+    'age': {'type': int},
+    'pets': {
+        'type': dict,
+        'schema': {
+            'dog': {'type': bool, 'default': None},
+            'cat': {'type': bool}
+        },
+    },
+}
+
+SCHEMA_4_DEFAULT_VALUE_DICT = {
+    'time': '08:40',
+    'person': 'C.Lindbergh',
+    'age': 0,
+    'pets': {
+        'dog': None,
+        'cat': False,
+    }
 }
 
 
@@ -157,3 +193,21 @@ def test_arrays():
 
     with raises(TypeError):
         check_dict_against_schema(test, SCHEMA_3)
+
+
+def test_default_value_dict():
+    """
+    Test 'get_default_value_dict()'
+    """
+
+    defaults = get_default_value_dict(SCHEMA_1)
+    assert defaults == SCHEMA_1_DEFAULT_VALUE_DICT
+
+    defaults = get_default_value_dict(SCHEMA_4)
+    assert isinstance(defaults['time'], str)
+
+    # Time may vary
+    del SCHEMA_4_DEFAULT_VALUE_DICT['time']
+    del defaults['time']
+
+    assert defaults == SCHEMA_4_DEFAULT_VALUE_DICT

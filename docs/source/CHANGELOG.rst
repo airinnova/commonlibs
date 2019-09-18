@@ -4,6 +4,14 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.3.1] -- 2019-09-18
+---------------------
+
+Added
+~~~~~
+
+* Added `get_default_value_dict()` which returns a default value dictionary from a schema dictionary
+
 [0.3.0] -- 2019-09-17
 ---------------------
 

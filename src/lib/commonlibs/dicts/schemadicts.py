@@ -24,6 +24,7 @@ Schema dictionaries
 """
 
 import operator
+from uuid import uuid4
 
 
 OPERATORS = {
@@ -34,6 +35,13 @@ OPERATORS = {
 }
 
 SPECIAL_KEY_CHECK_REQ_KEYS = '__REQUIRED_KEYS'
+
+SPECIAL_KEYS = [
+    SPECIAL_KEY_CHECK_REQ_KEYS,
+]
+
+# Special 'type' used for checks
+NOTHING = f'__NOTHING__{uuid4()}'
 
 
 class SchemaError(Exception):
@@ -199,3 +207,80 @@ def check_keys_in_dict(required_keys, test_dict):
             Key '{required_key}' is required, but not found in test dictionary
             """
             raise KeyError(err_msg)
+
+
+def get_default_value_dict(schema_dict):
+    """
+    Return a dictionary with default values based on a schema dict
+
+    Default values are genereated as follows:
+
+        * If a key 'default' exists, the corresponding value will be used
+            * If value is callable object, then the called value will be used
+            * If value is non-callable, the value itself will be used
+        * If no key, 'default' exists, 'type' will be called (if callable type)
+        * Otherwise the default value will be None
+
+    Example:
+
+    from datetime import datetime
+
+    def time_now():
+        return datetime.strftime(datetime.now(), '%H:%S')
+
+    schema_dict = {
+        'time': {'type': str, 'default': time_now},
+        'person': {'type': str, 'default': 'C.Lindbergh'},
+        'age': {'type': int},
+        'pets': {
+            'type': dict,
+            'schema': {
+                'dog': {'type': bool, 'default': None},
+                'cat': {'type': bool}
+            },
+        },
+    }
+
+    The function will return
+
+    defaults = {
+        'time': '08:40',
+        'person': 'C.Lindbergh',
+        'age': 0,
+        'pets': {
+            'dog': None,
+            'cat': False,
+        }
+    }
+    """
+
+    defaults = {}
+    for key, form in schema_dict.items():
+        if key in SPECIAL_KEYS:
+            continue
+
+        # ----- Basic type check -----
+        schema_dict_type = form.get('type', None)
+        if schema_dict_type is None:
+            raise SchemaError("Expected type is not defined in schema")
+
+        # ----- Recursion -----
+        if schema_dict_type is dict:
+            defaults[key] = get_default_value_dict(form.get('schema', {}))
+            continue
+
+        # ----- Set default value -----
+        # Hint: default value could be intentionally set to None
+        default_value = form.get('default', NOTHING)
+        if default_value is not NOTHING:
+            if callable(default_value):
+                defaults[key] = default_value()
+            else:
+                defaults[key] = default_value
+            # TODO: maybe check that defaults[key] has type schema_dict_type
+        elif callable(schema_dict_type):
+            defaults[key] = schema_dict_type()
+        else:
+            defaults[key] = None
+
+    return defaults
