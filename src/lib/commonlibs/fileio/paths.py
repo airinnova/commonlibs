@@ -288,7 +288,7 @@ def join_paths(*paths):
     Join two or more paths and return a new 'Path()' object
 
     Args:
-        :*paths: Paths to join
+        :paths: Paths to join
 
     Returns:
         :joined_path: Joined path

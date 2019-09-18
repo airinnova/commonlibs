@@ -6,6 +6,8 @@ Subpackages
 
 .. toctree::
 
+    commonlibs.dicts
+    commonlibs.fileio
     commonlibs.logger
     commonlibs.math
 

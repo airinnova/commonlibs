@@ -223,35 +223,39 @@ def get_default_value_dict(schema_dict):
 
     Example:
 
-    from datetime import datetime
+    .. code:: python
 
-    def time_now():
-        return datetime.strftime(datetime.now(), '%H:%S')
+        from datetime import datetime
 
-    schema_dict = {
-        'time': {'type': str, 'default': time_now},
-        'person': {'type': str, 'default': 'C.Lindbergh'},
-        'age': {'type': int},
-        'pets': {
-            'type': dict,
-            'schema': {
-                'dog': {'type': bool, 'default': None},
-                'cat': {'type': bool}
+        def time_now():
+            return datetime.strftime(datetime.now(), '%H:%S')
+
+        schema_dict = {
+            'time': {'type': str, 'default': time_now},
+            'person': {'type': str, 'default': 'C.Lindbergh'},
+            'age': {'type': int},
+            'pets': {
+                'type': dict,
+                'schema': {
+                    'dog': {'type': bool, 'default': None},
+                    'cat': {'type': bool}
+                },
             },
-        },
-    }
+        }
 
     The function will return
 
-    defaults = {
-        'time': '08:40',
-        'person': 'C.Lindbergh',
-        'age': 0,
-        'pets': {
-            'dog': None,
-            'cat': False,
+    .. code:: python
+
+        defaults = {
+            'time': '08:40',
+            'person': 'C.Lindbergh',
+            'age': 0,
+            'pets': {
+                'dog': None,
+                'cat': False,
+            }
         }
-    }
     """
 
     defaults = {}
