@@ -95,7 +95,7 @@ def check_dict_against_schema(test_dict, schema_dict):
         # ----- Basic type check -----
         schema_dict_type = form.get('type', None)
         if schema_dict_type is None:
-            raise SchemaError("Expected type is not defined in schema")
+            raise SchemaError(f"Expected type is not defined in schema (key: {key})")
 
         if not isinstance(test_dict_value, schema_dict_type):
             raise TypeError(
@@ -262,7 +262,7 @@ def get_default_value_dict(schema_dict):
         # ----- Basic type check -----
         schema_dict_type = form.get('type', None)
         if schema_dict_type is None:
-            raise SchemaError("Expected type is not defined in schema")
+            raise SchemaError(f"Expected type is not defined in schema (key: {key})")
 
         # ----- Recursion -----
         if schema_dict_type is dict:
