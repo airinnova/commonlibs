@@ -99,14 +99,22 @@ def rotate_vector_around_axis(vector, axis, angle, return_unit=False):
     """
     Rotate a vector by an angle around a defined axis.
 
+    Note:
+
+        * Returns the original vector if the Euclidean norm of 'vector' or
+          'axis' is zero or if 'angle' is zero
+
     Args:
-        :vector: vector to be rotated
+        :vector: Vector to be rotated
         :axis: 3x1 axis vector
-        :angle: rotation angle in radians
+        :angle: Rotation angle in radians
 
     Returns:
         :rot_vector: rotated vector
     """
+
+    if np.linalg.norm(vector) == 0 or np.linalg.norm(axis) == 0 or angle == 0:
+        return vector
 
     rot_vector = np.dot(axis_rot_matrix(axis, angle), vector)
 
