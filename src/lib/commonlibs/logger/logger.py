@@ -27,22 +27,24 @@ import os
 import logging
 
 
-def init(log_filename, level='warning'):
+def init(log_filename, level=None):
     """
     Inititalise a logger
 
     Note:
         * A stream handler and a console handler will be added, only if there are
           no existing handlers
-        * Accepted levels are:
-            * 'info'
-            * 'debug'
-            * 'quiet' (only errors)
-            * Default level is waring
+        * The logger level is determined by the attributes of 'level'
+            * Attributes can be True or False
+            * Accepted levels are:
+                * 'verbose'
+                * 'debug'
+                * 'quiet'
+                * Default level is waring
 
     Args:
-        :log_filename: filename of the log file
-        :level: logger level
+        :log_filename: Filename of the log file
+        :level: Logger level
     """
 
     logger = logging.getLogger()
@@ -55,11 +57,11 @@ def init(log_filename, level='warning'):
     if len(logger.handlers) > 0:
         return
 
-    if level == 'info':
+    if getattr(level, 'verbose', False):
         level = logging.INFO
-    elif level == 'debug':
+    elif getattr(level, 'debug', False):
         level = logging.DEBUG
-    elif level == 'quiet':
+    elif getattr(level, 'quiet', True):
         level = logging.ERROR
     else:
         level = logging.WARNING

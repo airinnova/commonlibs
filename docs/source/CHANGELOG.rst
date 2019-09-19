@@ -4,6 +4,14 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.3.3] -- 2019-09-19
+---------------------
+
+Changed
+~~~~~
+
+* Level argument in `logger.logger.init()` is determined by attribute rather than string
+
 [0.3.2] -- 2019-09-18
 ---------------------
 
