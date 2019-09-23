@@ -4,6 +4,14 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.3.4] -- 2019-09-23
+---------------------
+
+Added
+~~~~~
+
+* Added support for serialising Numpy arrays in `dump_pretty_json()`
+
 [0.3.3] -- 2019-09-19
 ---------------------
 

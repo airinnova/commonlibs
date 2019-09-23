@@ -26,5 +26,21 @@ JSON
 import json
 from functools import partial
 
+import numpy as np
+
+
+class NDArrayEncoder(json.JSONEncoder):
+    """
+    Serialise Numpy arrays
+
+    Use like this: json.dump(obj, fp, cls=NDArrayEncoder)
+    """
+
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()  # Covert Numpy array to list (Numpy method)
+        return json.JSONEncoder.default(self, obj)
+
+
 # Dump pretty-formatted JSON with support for numpy arrays
-dump_pretty_json = partial(json.dump, indent=4, separators=(',', ': '))
+dump_pretty_json = partial(json.dump, cls=NDArrayEncoder, indent=4, separators=(',', ': '))
