@@ -4,6 +4,14 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.4.0] -- 2020-03-21
+---------------------
+
+Added
+~~~~~
+
+* Added module `models` with a prototype `PropertyHandler()` meta class for model APIs
+
 [0.3.4] -- 2019-09-23
 ---------------------
 
