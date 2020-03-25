@@ -24,6 +24,7 @@ Model tools
 """
 
 import uuid
+from collections import namedtuple
 
 from commonlibs.dicts.schemadicts import check_dict_against_schema
 
@@ -36,37 +37,38 @@ def get_uuid():
     return str(uuid.uuid4())
 
 
+# TODO: subclass from dict ?? Overwrite set / get
 class PropertyHandler:
-    """
-    Meta class for handling model properties
 
-    Usage:
-        * Add as a meta class for some model class
-        * Allows complex models to be easily built from key-value pairs
-        * Values are checked agains expected data types, even nested dicts
-        * A high-level API is provided for user to build model with 'set()' and 'add()' methods
-    """
+    _PROP_SCHEMA_ENTRY = namedtuple('schema', ['schema', 'is_unique', 'is_required'])
 
     def __init__(self):
         """
+        Meta class for handling model properties
+
+        Usage:
+            * Add as a meta class for some model class
+            * Allows complex models to be easily built from key-value pairs
+            * Values are checked agains expected data types, even nested dicts
+            * A high-level API is provided for user to build model with 'set()' and 'add()' methods
+
         Attr:
-            :_prop_schemas: (dict) specification of user data
-            :_props: (dict) user data
+            :_prop_schemas: (dict) specification of expected user data
+            :_props: (dict) actual user data
         """
 
         self._prop_schemas = {}
         self._props = {}
 
-    def _add_prop_spec(self, key, schema, is_listlike=False, is_required=False, allow_overwrite=True):
+    def _add_prop_spec(self, key, schema, is_unique=True, is_required=False):
         """
         Add a specification for a key-property pair
 
         Args:
             :key: (str) UID of property
             :schema: (any) schema dict or type of expected value
-            :is_listlike: (bool) if true, the add() method applies otherwise the set() method
+            :is_unique: (bool) if True, the set() method applies otherwise the add() method
             :is_required: (bool) specify if property must be defined by user or not
-            :allow_overwrite: (bool) allow value to be overwritten (applies only to set() method)
 
         Raises:
             :ValueError: if input argument is of unexpected type
@@ -76,7 +78,7 @@ class PropertyHandler:
         # Check type of arguments
         if not isinstance(key, str):
             raise ValueError(f"'key' must be of type string, got {type(key)}")
-        for arg in (is_listlike, is_required, allow_overwrite):
+        for arg in (is_unique, is_required):
             if not isinstance(arg, bool):
                 raise ValueError(f"Agument of type boolean expected, got {type(arg)}")
 
@@ -84,12 +86,7 @@ class PropertyHandler:
         if key in self._prop_schemas.keys():
             raise KeyError(f"Property for '{key}' already defined")
 
-        self._prop_schemas[key] = {
-            'schema': schema,
-            'is_required': is_required,
-            'is_listlike': is_listlike,
-            'allow_overwrite': allow_overwrite,
-        }
+        self._prop_schemas[key] = self._PROP_SCHEMA_ENTRY(schema, is_unique, is_required)
 
     def set(self, key, value):
         """
@@ -100,12 +97,10 @@ class PropertyHandler:
             :value: (any) value of the property
         """
 
-        # Check added value
         self._raise_err_key_not_allowed(key)
-        self._raise_err_overwrite_not_allowed(key)
-        if self._prop_schemas[key]['is_listlike']:
-            raise RuntimeError(f"Method 'set()' does not apply to '{key}', try 'add()'")
         self._raise_err_incorrect_type(key, value)
+        if not self._prop_schemas[key].is_unique:
+            raise RuntimeError(f"Method 'set()' does not apply to '{key}', try 'add()'")
 
         self._props[key] = value
 
@@ -121,7 +116,7 @@ class PropertyHandler:
         # Check added value
         self._raise_err_key_not_allowed(key)
         self._raise_err_incorrect_type(key, value)
-        if not self._prop_schemas[key]['is_listlike']:
+        if self._prop_schemas[key].is_unique:
             raise RuntimeError(f"Method add() does not apply to '{key}'")
 
         # Append value to a property list
@@ -135,6 +130,8 @@ class PropertyHandler:
         return self._props[key]
 
     def iter(self, key):
+        if self._prop_schemas[key].is_unique:
+            raise KeyError(f"Method 'iter()' not supported for property '{key}', try 'get()'")
         for value in self._props[key]:
             yield value
 
@@ -142,13 +139,8 @@ class PropertyHandler:
         if key not in self._prop_schemas.keys():
             raise KeyError(f"Key '{key}' is not allowed")
 
-    def _raise_err_overwrite_not_allowed(self, key):
-        if key in self._props.keys() and self._prop_schemas[key]['allow_overwrite'] is False:
-            raise KeyError(f"Property '{key}' is set and cannot be overwritten")
-
     def _raise_err_incorrect_type(self, key, value):
-        value_template = self._prop_schemas[key]['schema']
-        if isinstance(value_template, dict):
-            check_dict_against_schema(value, value_template)
-        elif isinstance(value, value_template) is False:
-            raise ValueError
+        if isinstance(self._prop_schemas[key].schema, dict):
+            check_dict_against_schema(value, self._prop_schemas[key].schema)
+        elif not isinstance(value, self._prop_schemas[key].schema):
+            raise ValueError(f"Value of type {self._prop_schemas[key].schema} expected, got {type(value)}")
