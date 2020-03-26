@@ -42,7 +42,6 @@ def get_uuid():
     return str(uuid.uuid4())
 
 
-# TODO: subclass from dict ?? Overwrite set / get
 class PropertyHandler:
 
     _PROP_SCHEMA_ENTRY = namedtuple('schema', ['schema', 'is_unique', 'is_required'])

@@ -16,6 +16,12 @@
 * Improve string manipulation functions
 * Functions which modify file content could be placed in `fileio` instead (!?)
 
+## model.model
+* Let `PropertyHandler()` subclass from `dict` for more consistent storage of dictionary data and overwrite set/get methods?
+* Add option to attach "actions" when data is set/added using `set()` or `add()`
+    * Separate method like `_add_action(key, action, *args, **kwargs)` where `action` is callable OR
+    * Set during `_add_prop_spec(..., action=..., ...)`
+
 ## Documentation
 * Add documentation
 
