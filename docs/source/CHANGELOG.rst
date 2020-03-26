@@ -4,6 +4,14 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.4.2] -- 2020-03-26
+---------------------
+
+Added
+~~~~~
+
+* Add package `strings` with string manipulation tools
+
 [0.4.1] -- 2020-03-22
 ---------------------
 
