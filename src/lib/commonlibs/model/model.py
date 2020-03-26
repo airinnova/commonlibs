@@ -25,8 +25,13 @@ Model tools
 
 import uuid
 from collections import namedtuple
+import logging
 
 from commonlibs.dicts.schemadicts import check_dict_against_schema
+
+FORMAT = '%(levelname)s: %(message)s'
+logging.basicConfig(level=logging.INFO, format=FORMAT)
+logger = logging.getLogger(__name__)
 
 
 def get_uuid():
@@ -102,6 +107,7 @@ class PropertyHandler:
         if not self._prop_schemas[key].is_unique:
             raise RuntimeError(f"Method 'set()' does not apply to '{key}', try 'add()'")
 
+        logger.info(f"Set value for property {key!r}")
         self._props[key] = value
 
     def add(self, key, value):
@@ -124,6 +130,7 @@ class PropertyHandler:
             self._props[key] = []
         elif not isinstance(self._props[key], list):
             raise ValueError
+        logger.info(f"Add value for property {key!r}")
         self._props[key].append(value)
 
     def get(self, key):
