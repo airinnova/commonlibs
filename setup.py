@@ -16,7 +16,8 @@ DESCRIPTION = 'Libraries used by different packages'
 URL = 'https://github.com/airinnova/commonlibs'
 REQUIRES_PYTHON = '>=3.6.0'
 REQUIRED = [
-    'numpy'
+    'numpy',
+    'schemadict',
 ]
 README = 'README.rst'
 PACKAGE_DIR = 'src/lib/'
