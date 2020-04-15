@@ -27,7 +27,7 @@ import uuid
 from collections import namedtuple
 import logging
 
-from commonlibs.dicts.schemadicts import check_dict_against_schema
+from schemadict import schemadict
 
 FORMAT = '%(levelname)s: %(message)s'
 logging.basicConfig(level=logging.INFO, format=FORMAT)
@@ -147,6 +147,6 @@ class PropertyHandler:
 
     def _raise_err_incorrect_type(self, key, value):
         if isinstance(self._prop_schemas[key].schema, dict):
-            check_dict_against_schema(value, self._prop_schemas[key].schema)
+            schemadict.validate(self._prop_schemas[key].schema, value)
         elif not isinstance(value, self._prop_schemas[key].schema):
             raise ValueError(f"Value of type {self._prop_schemas[key].schema} expected, got {type(value)}")

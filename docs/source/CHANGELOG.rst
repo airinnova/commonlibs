@@ -4,6 +4,14 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.5.0] -- 2020-04-15
+---------------------
+
+Removed
+~~~~~~~
+
+* Removed `dicts.schemadicts` since the module has moved to its own repo (https://github.com/airinnova/schemadict)
+
 [0.4.2] -- 2020-03-26
 ---------------------
 
@@ -40,7 +48,7 @@ Added
 ---------------------
 
 Changed
-~~~~~
+~~~~~~~
 
 * Level argument in `logger.logger.init()` is determined by attribute rather than string
 
