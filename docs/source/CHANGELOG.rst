@@ -4,6 +4,14 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.5.1] -- 2020-05-01
+---------------------
+
+Removed
+~~~~~~~
+
+* Removed module `model` since moved to separate repo (https://github.com/airinnova/model-framework)
+
 [0.5.0] -- 2020-04-15
 ---------------------
 
