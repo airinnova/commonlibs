@@ -31,7 +31,6 @@
 * **logger** Consistent logging across different Python packages.
 * **math** Vectors manipulations.
 * **dicts** Dictionary tools.
-* **model** Tools to build model APIs.
 
 Documentation
 -------------

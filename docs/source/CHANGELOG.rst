@@ -4,6 +4,14 @@ Changelog
 Changelog for CommonLibs. Version numbers try to follow `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+[0.5.2] -- 2020-05-29
+---------------------
+
+Added
+~~~~~
+
+* Added new module `commonlibs.log` module to replace `commonlibs.logger.logger` in the future
+
 [0.5.1] -- 2020-05-01
 ---------------------
 
