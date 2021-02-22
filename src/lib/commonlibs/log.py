@@ -40,8 +40,10 @@ class PackageLogger:
         console_handler.setFormatter(formatter)
         self.logger.addHandler(console_handler)
 
-    def disable(self):
+    @property
+    def off(self):
         self.logger.setLevel(logging.ERROR)
 
-    def enable(self):
+    @property
+    def on(self):
         self.logger.setLevel(logging.DEBUG)
