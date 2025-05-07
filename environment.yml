@@ -16,7 +16,7 @@ dependencies:
   - pytest-cov=6.1.1
 
   - pip:
-    - sphinx-rtd-theme=3.0.2
-    - tox=4.25.0
-    - schemadict=0.0.12
-    - sphinx=8.2.3
+    - sphinx-rtd-theme==3.0.2
+    - tox==4.25.0
+    - schemadict==0.0.12
+    - sphinx==8.2.3
