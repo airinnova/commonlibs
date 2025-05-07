@@ -5,12 +5,10 @@ import os
 
 from setuptools import setup, find_packages
 
-from src.lib.commonlibs.__version__ import __version__
-
 # See also: https://github.com/kennethreitz/setup.py/blob/master/setup.py
 
 NAME = 'commonlibs'
-VERSION = __version__
+VERSION = "1.0.0"
 AUTHOR = 'Aaron Dettmann'
 EMAIL = 'dettmann@kth.se'
 DESCRIPTION = 'Libraries used by different packages'
