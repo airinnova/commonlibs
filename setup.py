@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
 import os
+
+from setuptools import setup, find_packages
 
 from src.lib.commonlibs.__version__ import __version__
 
@@ -14,7 +15,7 @@ AUTHOR = 'Aaron Dettmann'
 EMAIL = 'dettmann@kth.se'
 DESCRIPTION = 'Libraries used by different packages'
 URL = 'https://github.com/airinnova/commonlibs'
-REQUIRES_PYTHON = '>=3.6.0'
+REQUIRES_PYTHON = '>=3.11.1'
 REQUIRED = [
     'numpy',
     'schemadict',
@@ -45,8 +46,8 @@ setup(
     install_requires=REQUIRED,
     # See: https://pypi.org/classifiers/
     classifiers=[
-        "Programming Language :: Python :: 3",
-        'Programming Language :: Python :: 3.6',
+        "Programming Language :: Python :: 3.11",
+        'Programming Language :: Python :: 3.11.11',
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
         "Environment :: Console",
