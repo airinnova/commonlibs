@@ -13,7 +13,7 @@ AUTHOR = 'Aaron Dettmann'
 EMAIL = 'dettmann@kth.se'
 DESCRIPTION = 'Libraries used by different packages'
 URL = 'https://github.com/airinnova/commonlibs'
-REQUIRES_PYTHON = '>=3.11.1'
+REQUIRES_PYTHON = '>=3.11.11'
 REQUIRED = [
     'numpy',
     'schemadict',
@@ -45,7 +45,6 @@ setup(
     # See: https://pypi.org/classifiers/
     classifiers=[
         "Programming Language :: Python :: 3.11",
-        'Programming Language :: Python :: 3.11.11',
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
         "Environment :: Console",
