@@ -28,7 +28,7 @@ setup(
     author=AUTHOR,
     author_email=EMAIL,
     description=DESCRIPTION,
-    long_description=open("README.md").read(),
+    long_description=open("README.rst").read(),
     url=URL,
     include_package_data=True,
     package_dir={'': PACKAGE_DIR},
