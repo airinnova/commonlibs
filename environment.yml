@@ -1,0 +1,22 @@
+#       conda env create -f environment.yml
+
+name: commonlibs
+
+channels:
+  - dlr-sc
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11.11
+  - codecov=2.1.13
+  - numpy=2.2.5
+  - pip=25.1.1
+  - pytest=8.3.5
+  - pytest-cov=6.1.1
+
+  - pip:
+    - sphinx-rtd-theme==3.0.2
+    - tox==4.25.0
+    - schemadict==0.0.12
+    - sphinx==8.2.3
