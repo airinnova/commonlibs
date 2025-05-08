@@ -18,7 +18,6 @@ REQUIRED = [
     'numpy',
     'schemadict',
 ]
-README = 'README.rst'
 PACKAGE_DIR = 'src/lib/'
 LICENSE = 'Apache License 2.0'
 
@@ -28,7 +27,8 @@ setup(
     author=AUTHOR,
     author_email=EMAIL,
     description=DESCRIPTION,
-    long_description=open("README.rst").read(),
+    long_description=open("README.md").read(),
+    long_description_content_type = "text/markdown",
     url=URL,
     include_package_data=True,
     package_dir={'': PACKAGE_DIR},
